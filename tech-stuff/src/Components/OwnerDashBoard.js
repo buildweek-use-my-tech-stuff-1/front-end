@@ -3,9 +3,11 @@ import Card from './Card';
 
 const OwnerDashBoard = () => {
     return (
-        <button>Add Device</button>
-        <button>Update/Edit</button>
-        <Card/>
+        <div>
+            <button>Add Device</button>
+            <button>Update/Edit</button>
+            <Card/>
+        </div>
     )
 };
 
