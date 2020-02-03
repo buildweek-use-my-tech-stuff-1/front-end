@@ -1,8 +1,8 @@
 import React from 'react';
-import Card from './Card';
+import OwnerDashBoard from './Components/OwnerDashBoard';
 
 const App = () => {
-  <Card />
+  <OwnerDashBoard />
   return <h1>Hello World!</h1>;
   
 };
