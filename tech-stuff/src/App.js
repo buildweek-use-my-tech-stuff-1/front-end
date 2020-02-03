@@ -1,7 +1,8 @@
 import React from 'react';
+import Card from './Card';
 
 const App = () => {
-  return <h1>Hello World!</h1>;
+  return <Card />;
 };
 
 export default App;
