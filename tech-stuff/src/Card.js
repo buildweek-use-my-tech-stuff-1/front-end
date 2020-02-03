@@ -3,8 +3,8 @@ import React from "react";
 const Card = props => {
     return (
         <div>
-            {props.cards.map(card => (
-                <div className="card" key={card.id}>
+            
+                <div>
                         <h2>Name{card.name}</h2>
                         <p>Name</p>
                         <p>Description</p>
@@ -12,7 +12,7 @@ const Card = props => {
                         <p>Avaiable ?</p>
                         <button>Rent!</button>
                 </div>
-            ))}
+            
         </div>
     );
 };
