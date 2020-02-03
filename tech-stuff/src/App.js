@@ -1,10 +1,8 @@
-import React from 'react';
-import Card from './components/Card';
-import Login from './components/Login';
-import AccountCreation from './components/AccountCreation';
+import OwnerDashBoard from './Components/OwnerDashBoard';
 
 const App = () => {
-  return <AccountCreation />;
+  <OwnerDashBoard />
+  return <h1>Hello World!</h1>;
 };
 
 export default App;
