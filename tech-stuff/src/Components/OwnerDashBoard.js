@@ -6,7 +6,7 @@ const OwnerDashBoard = () => {
         <button>Add Device</button>
         <button>Update/Edit</button>
         <Card/>
-
+    )
 };
 
 export default OwnerDashBoard;
