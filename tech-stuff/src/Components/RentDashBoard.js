@@ -13,6 +13,7 @@ RentDashBoard = () => {
             />
             <Card/>
         </form>
+    )
 };
 
 export default RentDashBoard;
