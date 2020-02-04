@@ -11,7 +11,8 @@ export const postRegInfo = data => dispatch => {
   axios
     .post(`https://use-my-tech.herokuapp.com/api/user/register`, data)
     .then(res => {
-      localStorage.setItem('userID', res.data.id);
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('userID', res.data.saved.id);
       dispatch({ type: POST_REG_SUCC, payload: data });
       console.log(res.data);
     })
