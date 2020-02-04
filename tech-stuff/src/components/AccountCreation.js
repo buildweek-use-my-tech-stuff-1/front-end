@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { postRegInfo } from '../utils/actions';
 
-const AccountCreation = () => {
+const AccountCreation = props => {
   const [form, setForm] = useState({
-    full_name: '',
-    email: '',
-    location: '',
     username: '',
-    password: ''
+    password: '',
+    location: ''
   });
 
   const handleChanges = e => {
@@ -17,6 +17,13 @@ const AccountCreation = () => {
       [e.target.name]: e.target.value
     });
   };
+
+  const reg = e => {
+    e.preventDefault();
+    props.postRegInfo(form);
+    props.history.push('/login');
+  };
+
   return (
     <div
       style={{
@@ -26,24 +33,24 @@ const AccountCreation = () => {
         justifyContent: 'center'
       }}
     >
-      <Form className='w-25'>
+      <Form onSubmit={reg} className='w-25'>
         <FormGroup>
-          <Label>Full Name</Label>
+          <Label>Username</Label>
           <Input
             type='text'
-            name='full_name'
-            placeholder='Enter Full Name'
-            value={form.full_name}
+            name='username'
+            placeholder='Create Username'
+            value={form.username}
             onChange={handleChanges}
           />
         </FormGroup>
         <FormGroup>
-          <Label>Email</Label>
+          <Label>Password</Label>
           <Input
-            type='email'
-            name='email'
-            placeholder='Enter Email'
-            value={form.email}
+            type='password'
+            name='password'
+            placeholder='Create Password'
+            value={form.password}
             onChange={handleChanges}
           />
         </FormGroup>
@@ -54,26 +61,6 @@ const AccountCreation = () => {
             name='location'
             placeholder='Enter Location'
             value={form.location}
-            onChange={handleChanges}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label>Username</Label>
-          <Input
-            type='text'
-            name='username'
-            placeholder='Enter Username'
-            value={form.username}
-            onChange={handleChanges}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label>Password</Label>
-          <Input
-            type='password'
-            name='password'
-            placeholder='Enter Password'
-            value={form.password}
             onChange={handleChanges}
           />
         </FormGroup>
@@ -88,4 +75,8 @@ const AccountCreation = () => {
   );
 };
 
-export default AccountCreation;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(mapStateToProps, { postRegInfo })(AccountCreation);
