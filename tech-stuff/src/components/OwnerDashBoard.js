@@ -1,9 +1,9 @@
 import React from "react";
-import Card from './Card';
+import Cards from './Card';
 
 const OwnerDashBoard = () => {
     return (
-        <Card />
+        <Cards />
     );
 };
 
