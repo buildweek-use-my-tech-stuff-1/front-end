@@ -1,18 +1,34 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { axios } from 'axios';
 
-const Login = () => {
+const Login = props => {
   const [cred, setCred] = useState({
     username: '',
     password: ''
   });
 
   const handleChange = e => {
-    setCred({
-      ...cred,
-      [e.target.name]: e.target.value
-    });
+    let name = e.target.name;
+    setCred({ ...cred, [name]: e.target.value });
+  };
+
+  const signIn = e => {
+    e.preventDefault();
+    console.log(cred.username);
+    console.log(cred.password);
+    console.log(cred);
+    axiosWithAuth()
+      .post(`/user/login`, cred)
+      .then(res => {
+        console.log(res.data);
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('userID', res.data.id);
+        // props.history.push(`/owner-dashboard`);
+      })
+      .catch(err => console.log(err));
   };
   return (
     <div
@@ -23,7 +39,7 @@ const Login = () => {
         justifyContent: 'center'
       }}
     >
-      <Form className='w-25'>
+      <Form onSubmit={signIn} className='w-25'>
         <FormGroup>
           <Label>Username</Label>
           <Input
@@ -44,7 +60,7 @@ const Login = () => {
             onChange={handleChange}
           />
         </FormGroup>
-        <Button>Log in</Button>
+        <Button type='submit'>Log in</Button>
         <Link to='/'>
           <Button color='link' className='ml-2'>
             Don't have an account?

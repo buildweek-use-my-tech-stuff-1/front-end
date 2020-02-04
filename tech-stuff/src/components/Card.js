@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
     Card, CardImg, CardText, CardBody,
@@ -22,6 +23,7 @@ const Cards = () => {
         </Card>
         </div>
     );
+
 };
 
-export default Cards;
+export default Card;
