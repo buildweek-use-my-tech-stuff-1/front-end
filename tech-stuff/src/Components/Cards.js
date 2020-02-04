@@ -2,7 +2,7 @@
 import React from "react";
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+    CardTitle, Button, FormGroup, Label, Input } from 'reactstrap';
 
 const Cards = () => {
     return (
@@ -26,4 +26,4 @@ const Cards = () => {
 
 };
 
-export default Card;
+export default Cards;
