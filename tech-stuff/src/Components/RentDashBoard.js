@@ -1,5 +1,5 @@
 import React from "react";
-import Card from './Card';
+import Cards from './Card';
 
 const 
 RentDashBoard = () => {
@@ -11,7 +11,7 @@ RentDashBoard = () => {
               tabIndex="0"
               placeholder="Search"
             />
-            <Card/>
+            <Cards/>
         </form>
     )
 };
