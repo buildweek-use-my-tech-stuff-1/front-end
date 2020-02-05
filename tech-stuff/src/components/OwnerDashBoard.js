@@ -1,12 +1,12 @@
 import React from 'react';
-import Card from './Card';
+import Cards from './Cards';
 
 const OwnerDashBoard = () => {
   return (
     <div>
       <button>Add Device</button>
       <button>Update/Edit</button>
-      <Card />
+      <Cards />
     </div>
   );
 };
