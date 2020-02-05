@@ -1,24 +1,50 @@
 import {
   POST_REG_START,
   POST_REG_SUCC,
-  POST_REG_FAIL
-  // USER_LOADING,
-  // USER_LOADED,
-  // LOGIN_SUCC,
-  // LOGIN_FAIL
+  POST_REG_FAIL,
+  FETCH_USER,
+  FETCH_USER_SUCC,
+  FETCH_USER_FAIL,
+  FETCH_TECH_ITEMS,
+  FETCH_TECH_SUCC,
+  FETCH_TECH_FAIL
 } from './actions';
 
+const userID = localStorage.getItem('userID');
+
 const initialState = {
-  // regInfo: {
-  //   username: '',
-  //   password: '',
-  //   location: ''
-  // },
   token: localStorage.getItem('token'),
   fetching: false,
   isAuthenticated: null,
   error: '',
-  user: null
+  // user: null,
+
+  userInfo: {
+    username: '',
+    image: '',
+    password: '',
+    location: ''
+  },
+
+  allTech: [
+    {
+      owner_id: userID,
+      image: '',
+      username: '',
+      name: '',
+      description: ''
+    }
+  ],
+
+  tech: [
+    {
+      owner_id: userID,
+      username: '',
+      name: '',
+      description: '',
+      rented: false
+    }
+  ]
 };
 
 export const reducer = (state = initialState, action) => {
@@ -26,13 +52,13 @@ export const reducer = (state = initialState, action) => {
     case POST_REG_START:
       return {
         ...state,
-        user: action.payload,
+        userInfo: action.payload,
         fetching: true
       };
     case POST_REG_SUCC:
       return {
         ...state,
-        user: action.payload,
+        userInfo: action.payload,
         fetching: false,
         error: ''
       };
@@ -42,33 +68,45 @@ export const reducer = (state = initialState, action) => {
         fetching: false,
         error: action.payload
       };
-    // case USER_LOADING:
-    //   return {
-    //     ...state,
-    //     fetching: true
-    //   };
-    // case USER_LOADED:
-    //   return {
-    //     ...state,
-    //     isAuthenticated: true,
-    //     fetching: false,
-    //     user: action.payload
-    //   };
-    // case LOGIN_SUCC:
-    //   return {
-    //     ...state,
-    //     ...action.payload,
-    //     isAuthenticated: true,
-    //     fetching: false
-    //   };
-    // case LOGIN_FAIL:
-    //   return {
-    //     ...state,
-    //     token: null,
-    //     user: null,
-    //     isAuthenticated: false,
-    //     fetching: false
-    //   };
+    case FETCH_USER:
+      return {
+        ...state,
+        fetching: true,
+        error: ''
+      };
+    case FETCH_USER_SUCC:
+      return {
+        ...state,
+        fetching: false,
+        error: '',
+        userInfo: action.payload
+      };
+    case FETCH_USER_FAIL:
+      return {
+        ...state,
+        fetching: false,
+        error: action.payload
+      };
+    case FETCH_TECH_ITEMS:
+      return {
+        ...state,
+        fetching: true,
+        error: ''
+      };
+    case FETCH_TECH_SUCC:
+      return {
+        ...state,
+        fetching: false,
+        allTech: action.payload,
+        error: ''
+      };
+    case FETCH_TECH_FAIL:
+      return {
+        ...state,
+        fetching: false,
+        allTech: [],
+        error: action.payload
+      };
     default:
       return state;
   }
