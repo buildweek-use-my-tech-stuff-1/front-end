@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle
-} from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { techArray } from '../utils/actions';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const TechItems = props => {
-  const [tech, setTech] = useState();
+  const [techStuff, setTech] = useState();
   const userID = localStorage.getItem('userID');
 
   useEffect(() => {
@@ -23,19 +16,18 @@ const TechItems = props => {
   return (
     <div>
       <Card>
-        {props.userInfo &&
-          props.tech &&
-          props.tech.map(item => {
-            return (
-              <Link to={`/tech/${item.id}`}>
-                <CardImg src={item.image} />
-                <CardBody>
-                  <CardTitle>{item.name}</CardTitle>
-                  <CardText>{item.description}</CardText>
-                </CardBody>
-              </Link>
-            );
-          })}
+        {props.allTech.map(item => {
+          console.log(item);
+          return (
+            <Link to={`/tech/${item.users_id}`}>
+              <CardImg className='w-25' src={item.image} />
+              <CardBody>
+                <CardTitle>{item.name}</CardTitle>
+                <CardText>{item.description}</CardText>
+              </CardBody>
+            </Link>
+          );
+        })}
       </Card>
     </div>
   );

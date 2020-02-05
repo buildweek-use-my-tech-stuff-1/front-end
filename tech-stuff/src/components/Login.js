@@ -16,13 +16,13 @@ const Login = props => {
 
   const signIn = e => {
     e.preventDefault();
-    console.log(cred.username);
-    console.log(cred.password);
-    console.log(cred);
+    // console.log(cred.username);
+    // console.log(cred.password);
+    // console.log(cred);
     axiosWithAuth()
       .post(`/user/login`, cred)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('userID', res.data.id);
         props.history.push(`/owner-dashboard/${res.data.id}`);

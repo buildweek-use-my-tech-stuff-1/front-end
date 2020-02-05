@@ -1,13 +1,23 @@
 import {
+  // POST REGISTER
   POST_REG_START,
   POST_REG_SUCC,
   POST_REG_FAIL,
+
+  // FETCH USER DATA
   FETCH_USER,
   FETCH_USER_SUCC,
   FETCH_USER_FAIL,
+
+  // FETCH TECH ALL
   FETCH_TECH_ITEMS,
   FETCH_TECH_SUCC,
-  FETCH_TECH_FAIL
+  FETCH_TECH_FAIL,
+
+  //FETCH TECH ITEM
+  FETCH_TECH_ITEM,
+  FETCH_TECH_ITEM_SUCC,
+  FETCH_TECH_ITEM_FAIL
 } from './actions';
 
 const userID = localStorage.getItem('userID');
@@ -32,19 +42,21 @@ const initialState = {
       image: '',
       username: '',
       name: '',
-      description: ''
-    }
-  ],
-
-  tech: [
-    {
-      owner_id: userID,
-      username: '',
-      name: '',
       description: '',
       rented: false
     }
   ]
+
+  // tech: [
+  //   {
+  //     owner_id: userID,
+  //     image: '',
+  //     username: '',
+  //     name: '',
+  //     description: '',
+  //     rented: false
+  //   }
+  // ]
 };
 
 export const reducer = (state = initialState, action) => {
@@ -104,7 +116,25 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetching: false,
-        allTech: [],
+        error: action.payload
+      };
+    case FETCH_TECH_ITEM:
+      return {
+        ...state,
+        fetching: true,
+        error: ''
+      };
+    case FETCH_TECH_ITEM_SUCC:
+      return {
+        ...state,
+        fetching: false,
+        tech: action.payload,
+        error: ''
+      };
+    case FETCH_TECH_ITEM_FAIL:
+      return {
+        ...state,
+        fetching: false,
         error: action.payload
       };
     default:
