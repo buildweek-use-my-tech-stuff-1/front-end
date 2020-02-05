@@ -8,9 +8,11 @@ import PrivateRoute from './Components/PrivateRoute';
 const App = () => {
   return (
     <div>
+
       <Route exact path='/' component={AccountCreation} />
       <Route exact path='/login' component={Login} />
       <PrivateRoute path='/owner-dashboard' component={OwnerDashBoard} />
+
     </div>
   );
 };
