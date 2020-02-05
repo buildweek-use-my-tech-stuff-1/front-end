@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import { axios } from 'axios';
 
 const Login = props => {
   const [cred, setCred] = useState({
@@ -26,7 +25,7 @@ const Login = props => {
         console.log(res.data);
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('userID', res.data.id);
-        // props.history.push(`/owner-dashboard`);
+        props.history.push(`/owner-dashboard/${res.data.id}`);
       })
       .catch(err => console.log(err));
   };
