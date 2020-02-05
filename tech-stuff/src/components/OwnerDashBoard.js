@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import Card from './Card';
+import Cards from './Cards';
+import TechItems from './TechItems';
 import { Media } from 'reactstrap';
 import { getUser } from '../utils/actions';
 import { Link } from 'react-router-dom';
@@ -30,7 +31,7 @@ const OwnerDashBoard = props => {
       </Media>
       <button>Add Device</button>
       <button>Update/Edit</button>
-      <Card />
+      <TechItems />
     </div>
   );
 };
