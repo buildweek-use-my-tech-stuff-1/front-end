@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "name": "tech-stuff",
+  "builds": [
+    {
+      "src": "tech-stuff/package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "tech-stuff/$1" }]
+}
