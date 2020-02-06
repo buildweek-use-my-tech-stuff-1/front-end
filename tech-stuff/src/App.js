@@ -12,7 +12,10 @@ import GuestDashboard from './Components/GuestDashboard';
 
 const App = () => {
   return (
-    <div>
+    <div style={{
+      backgroundColor: '#f5fcfd',
+       
+      }}>
       <NavbarTing />
       <Route exact path='/' component={AccountCreation} />
       <Route exact path='/login' component={Login} />
