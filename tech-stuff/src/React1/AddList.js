@@ -27,16 +27,13 @@ const Forms = ({values, errors, touched, status}) => {
             <button type="submit">Submit!</button>
         </Form>
         {users.map(users => (
-            <ul key={users.id}>
-                
+            <p key={users.id}>
                     <h1>{users.name}</h1>
-                
-            </ul>
+            </p>
         ))}
     </div> 
     );
   };
-
 
 const FormikForms = withFormik({
     mapPropsToValues({name}){

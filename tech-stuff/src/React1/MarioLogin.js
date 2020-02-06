@@ -1,6 +1,6 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import CharacterList from './CharacterList';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+
 
 export default function MarioLogin() {
   const { register, handleSubmit, errors } = useForm()
