@@ -8,7 +8,7 @@ const Characters = () => {
             margin: 'auto',
             textAlign: 'center',
             width: '50%', 
-            
+            backgroundColor: '#f5fcfd',
             }}>
             <AddList />
              <CharacterList/>

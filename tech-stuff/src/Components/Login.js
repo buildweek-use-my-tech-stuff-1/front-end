@@ -35,7 +35,8 @@ const Login = props => {
         display: 'flex',
         width: '100%',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        height: '80vh',
       }}
     >
       <Form onSubmit={signIn} className='w-25'>
