@@ -18,7 +18,8 @@ const NavbarTing = () => {
 
   const logOut = () => {
     localStorage.removeItem('token');
-    // window.location.reload();
+    localStorage.removeItem('reload');
+    window.location.reload();
   };
 
   useEffect(() => {

@@ -12,6 +12,13 @@ const SellerDashboard = props => {
     props.getUser(userID);
   }, []);
 
+  useEffect(() => {
+    if (!localStorage.getItem('reload')) {
+      window.location.reload();
+      localStorage.setItem('reload', 'loaded');
+    }
+  }, []);
+
   return (
     <div>
       <div>
