@@ -21,6 +21,11 @@ export const FETCH_TECH_ITEM = 'FETCH_TECH_ITEM';
 export const FETCH_TECH_ITEM_SUCC = 'FETCH_TECH_ITEM_SUCC';
 export const FETCH_TECH_ITEM_FAIL = ' FETCH_TECH_ITEM_FAIL';
 
+// GET ALL TECH ITEMS
+export const FETCH_ALL = 'FETCH_ALL';
+export const FETCH_ALL_SUCC = 'FETCH_ALL_SUCC';
+export const FETCH_ALL_FAIL = 'FETCH_ALL_FAIL';
+
 // POST REGISTER REQUEST
 export const postRegInfo = data => dispatch => {
   dispatch({ type: POST_REG_START, payload: data });
@@ -68,7 +73,7 @@ export const techArray = id => dispatch => {
 };
 
 // GET TECH ITEM
-export const techItem = id => dispatch => {
+export const techStuff = id => dispatch => {
   dispatch({ type: FETCH_TECH_ITEM });
   axiosWithAuth()
     .get(`/tech/${id}`)
@@ -78,5 +83,17 @@ export const techItem = id => dispatch => {
     })
     .catch(err => {
       dispatch({ type: FETCH_TECH_ITEM_FAIL, payload: err.response });
+    });
+};
+
+export const fetchAllItems = dispatch => {
+  dispatch({ type: FETCH_ALL });
+  axiosWithAuth()
+    .get(`/tech`)
+    .then(res => {
+      dispatch({ type: FETCH_ALL_SUCC, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_ALL_FAIL, payload: err.response });
     });
 };

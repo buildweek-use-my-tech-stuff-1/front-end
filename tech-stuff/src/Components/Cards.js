@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import {
   Card,
   CardImg,
@@ -6,33 +7,128 @@ import {
   CardBody,
   CardTitle,
   Button,
+  Form,
   FormGroup,
   Label,
-  Input
+  Input,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
 } from 'reactstrap';
 
 const Cards = props => {
+  const [item, setItem] = useState({});
+  const [thing, setThing] = useState({});
+  const [modal, setModal] = useState(false);
+  let itemID = props.match.params.id;
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/tech/${itemID}`)
+      .then(res => {
+        console.log(res.data);
+        setItem(res.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  const update = e => {
+    e.preventDefault();
+    axiosWithAuth()
+      .put(`/tech/${itemID}`, thing)
+      .then(res => {
+        console.log(`Updated`, res);
+      })
+      .catch(err => {
+        console.log(`Not Updated`, err);
+      });
+  };
+
+  const del = e => {
+    e.preventDefault();
+    axiosWithAuth()
+      .delete(`/tech/${itemID}`)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err.response);
+      });
+  };
+
+  const toggle = () => {
+    setModal(!modal);
+  };
+
+  const handleChanges = e => {
+    e.preventDefault();
+    setThing({
+      ...thing,
+      [e.target.name]: e.target.value
+    });
+  };
+
   return (
     <div className='test'>
-      <Card className='m-3' style={{ width: '20%' }}>
+      <Card className='m-3 w-25'>
         <CardBody>
-          <CardTitle>{props.name}</CardTitle>
-          <CardImg
-            top
-            width='100%'
-            src='https://www.pioneerdj.com/-/media/pioneerdj/images/products/mixer/djm-900nxs2/black/djm-900nxs2-main2.png?h=768&w=1024&hash=62AD7EB7FAB2CC535B2056C149DCA1C29AB5000D'
-            alt='Pioneer DJM900 nexus2'
-          />
-          <CardText>Model #: </CardText>
-          <FormGroup>
-            <Label for='exampleText'>Text Area</Label>
-            <Input type='textarea' name='text' id='exampleText' />
-          </FormGroup>
-          <CardText>{props.price}</CardText>
-          <CardText>Avaiable ?</CardText>
-          <Button>Rent!</Button>
+          <CardTitle>{item.name}</CardTitle>
+          <CardImg top width='100%' src={item.image} alt='Generic Tech Item' />
+          <CardText>Description: {item.description}</CardText>
+          <CardText>Price: {item.price}</CardText>
+          <Button onClick={toggle}>Edit</Button>
+          <Button className='ml-2' color='danger' onClick={del}>
+            Delete
+          </Button>
         </CardBody>
       </Card>
+
+      <div>
+        <Modal isOpen={modal} toggle={toggle}>
+          <ModalHeader toggle={toggle}>Edit Item Details</ModalHeader>
+          <ModalBody>
+            <Form onSubmit={update}>
+              <FormGroup>
+                <Label>Name:</Label>
+                <Input
+                  placeholder='Name'
+                  onChange={handleChanges}
+                  value={thing.name}
+                  name='name'
+                  type='text'
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label>Description</Label>
+                <Input
+                  placeholder='Description'
+                  onChange={handleChanges}
+                  value={thing.description}
+                  name='description'
+                  type='text'
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label>Price:</Label>
+                <Input
+                  placeholder='Price'
+                  onChange={handleChanges}
+                  value={thing.price}
+                  name='price'
+                  type='text'
+                />
+              </FormGroup>
+              <ModalFooter className='justify-content-start'>
+                <Button onClick={toggle} type='submit'>
+                  Save
+                </Button>
+                <Button onClick={toggle}>Cancel</Button>
+              </ModalFooter>
+            </Form>
+          </ModalBody>
+        </Modal>
+      </div>
     </div>
   );
 };
