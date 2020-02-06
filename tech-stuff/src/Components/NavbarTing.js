@@ -9,6 +9,7 @@ import {
   NavLink
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import '../app.css';
 
 const NavbarTing = () => {
   const [collapsed, setCollapsed] = useState(true);
@@ -31,9 +32,7 @@ const NavbarTing = () => {
   return (
     <div>
       <Navbar color='faded' light>
-        <NavbarBrand href='/' className='mr-auto'>
-          reactstrap
-        </NavbarBrand>
+        <NavbarBrand className='mr-auto'>Tech-Hub</NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className='mr-2' />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
@@ -43,14 +42,14 @@ const NavbarTing = () => {
               </Link>
             </NavItem>
             <NavItem>
-              <Link to='/tech'>
+              <Link to='/all/tech'>
                 <NavLink>Dashboard</NavLink>
               </Link>
             </NavItem>
             <NavItem>
               <Link to='/login'>
                 <NavLink onClick={logOut} active>
-                  Log Out
+                  Login/Logout
                 </NavLink>
               </Link>
             </NavItem>

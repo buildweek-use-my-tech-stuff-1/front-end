@@ -20,7 +20,7 @@ const App = () => {
       <Route exact path='/login' component={Login} />
       <PrivateRoute path='/owner-dashboard/:id' component={SellerDashboard} />
       <Route path='/tech/:id' component={Cards} />
-      <Route path='/tech' component={GuestDashboard} />
+      <Route path='/all/tech' component={GuestDashboard} />
     </div>
   );
 };

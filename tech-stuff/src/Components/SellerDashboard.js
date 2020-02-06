@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
-import Cards from './Cards';
+import React, { useEffect, useState } from 'react';
 import TechItems from './TechItems';
-import { Media, Jumbotron } from 'reactstrap';
+import { Jumbotron } from 'reactstrap';
 import { getUser } from '../utils/actions';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const SellerDashboard = props => {
   const userID = localStorage.getItem('userID');

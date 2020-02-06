@@ -10,7 +10,7 @@ const TechItems = props => {
 
   useEffect(() => {
     props.techArray(userID);
-    setTech(props.techArray);
+    setTech(props.techItem);
   }, []);
 
   return (
