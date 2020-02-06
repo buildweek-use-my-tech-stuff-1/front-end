@@ -11,7 +11,7 @@ export default function MarioLogin() {
       margin: 'auto',
       textAlign: 'center',
       width: '20%', 
-      border: '1px solid red'
+      // border: '1px solid red'
       }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>First Name: </label><br/>

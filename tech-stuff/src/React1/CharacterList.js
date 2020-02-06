@@ -28,7 +28,7 @@ const {id} = useParams();
             <div>
             {/* <h1>List</h1> */}
                 {character.map((character) => {
-                    console.log('map', character);
+                    // console.log('map', character);
                     return <CharacterCard character={character} />
                 })}
         </div>     

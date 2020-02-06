@@ -10,10 +10,9 @@ const App = () => {
   return (
     <div>
 
-      {/* <Route exact path='/' component={AccountCreation} />
+      <Route exact path='/' component={AccountCreation} />
       <Route exact path='/login' component={Login} />
-      <PrivateRoute path='/owner-dashboard' component={OwnerDashBoard} /> */}
-      <Characters />
+      <PrivateRoute path='/owner-dashboard' component={OwnerDashBoard} />
 
     </div>
   );
