@@ -14,7 +14,7 @@ const App = () => {
       <NavbarTing />
       <Route exact path='/' component={AccountCreation} />
       <Route exact path='/login' component={Login} />
-      <PrivateRoute path='/seller-dashboard/:id' component={SellerDashboard} />
+      <PrivateRoute path='/owner-dashboard/:id' component={SellerDashboard} />
       <Route path='/tech/:id' component={Cards} />
       <Route path='/tech' component={GuestDashboard} />
     </div>
