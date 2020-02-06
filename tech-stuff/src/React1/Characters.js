@@ -4,6 +4,7 @@ import CharacterList from "./CharacterList";
 const Characters = () => {
     return (
         <div>
+            <p>CharacterList</p>
              <CharacterList/>
         </div>
     )

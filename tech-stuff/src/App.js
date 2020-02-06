@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import AccountCreation from './Components/AccountCreation';
 import Login from './Components/Login';
 import PrivateRoute from './Components/PrivateRoute';
-import MarioLogin from './React1/MarioLogin';
+import Characters from './React1/Characters';
 
 const App = () => {
   return (
@@ -13,7 +13,7 @@ const App = () => {
       {/* <Route exact path='/' component={AccountCreation} />
       <Route exact path='/login' component={Login} />
       <PrivateRoute path='/owner-dashboard' component={OwnerDashBoard} /> */}
-      <MarioLogin />
+      <Characters />
 
     </div>
   );
