@@ -9,7 +9,7 @@ import {
   FETCH_USER_SUCC,
   FETCH_USER_FAIL,
 
-  // FETCH TECH ALL
+  // FETCH TECH SOLD FROM OWNER
   FETCH_TECH_ITEMS,
   FETCH_TECH_SUCC,
   FETCH_TECH_FAIL,
@@ -17,7 +17,12 @@ import {
   //FETCH TECH ITEM
   FETCH_TECH_ITEM,
   FETCH_TECH_ITEM_SUCC,
-  FETCH_TECH_ITEM_FAIL
+  FETCH_TECH_ITEM_FAIL,
+
+  // FETCH ALL TECH
+  FETCH_ALL,
+  FETCH_ALL_SUCC,
+  FETCH_ALL_FAIL
 } from './actions';
 
 const userID = localStorage.getItem('userID');
@@ -39,6 +44,17 @@ const initialState = {
   allTech: [
     {
       owner_id: userID,
+      user_image: '',
+      username: '',
+      name: '',
+      description: '',
+      rented: false
+    }
+  ],
+
+  tech: [
+    {
+      owner_id: userID,
       image: '',
       username: '',
       name: '',
@@ -46,17 +62,6 @@ const initialState = {
       rented: false
     }
   ]
-
-  // tech: [
-  //   {
-  //     owner_id: userID,
-  //     image: '',
-  //     username: '',
-  //     name: '',
-  //     description: '',
-  //     rented: false
-  //   }
-  // ]
 };
 
 export const reducer = (state = initialState, action) => {
@@ -132,6 +137,23 @@ export const reducer = (state = initialState, action) => {
         error: ''
       };
     case FETCH_TECH_ITEM_FAIL:
+      return {
+        ...state,
+        fetching: false,
+        error: action.payload
+      };
+    case FETCH_ALL:
+      return {
+        ...state,
+        fetching: true
+      };
+    case FETCH_ALL_SUCC:
+      return {
+        ...state,
+        fetching: false,
+        allTech: action.payload
+      };
+    case FETCH_ALL_FAIL:
       return {
         ...state,
         fetching: false,

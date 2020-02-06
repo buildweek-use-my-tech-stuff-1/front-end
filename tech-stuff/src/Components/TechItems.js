@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const TechItems = props => {
-  const [techStuff, setTech] = useState();
+  const [tech, setTech] = useState();
   const userID = localStorage.getItem('userID');
 
   useEffect(() => {
     props.techArray(userID);
-    setTech(props.allTech);
+    setTech(props.techArray);
   }, []);
 
   return (
@@ -19,13 +19,19 @@ const TechItems = props => {
         {props.allTech.map(item => {
           console.log(item);
           return (
-            <Link to={`/tech/${item.users_id}`}>
-              <CardImg className='w-25' src={item.image} />
-              <CardBody>
-                <CardTitle>{item.name}</CardTitle>
-                <CardText>{item.description}</CardText>
+            <>
+              <Link to={`/tech/${item.id}`}>
+                <CardImg className='w-25' src={item.image} />
+              </Link>
+              <CardBody className='text-lg-center'>
+                <CardTitle className='font-weight-bold'>
+                  Name: Foggy Machine
+                </CardTitle>
+                <CardText className='font-weight-light'>
+                  Description: White Clouds ye
+                </CardText>
               </CardBody>
-            </Link>
+            </>
           );
         })}
       </Card>
