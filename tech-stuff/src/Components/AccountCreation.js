@@ -31,7 +31,8 @@ const AccountCreation = props => {
         display: 'flex',
         width: '100%',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        height: '80vh',
       }}
     >
       <Form onSubmit={reg} className='w-25'>
